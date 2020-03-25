@@ -1,9 +1,3 @@
-pub fn search_str(query: &String, content: &String) -> Vec<String> {
-    let mut result = vec![];
-    for line in content.as_str().lines() {
-        if line.contains(query.as_str()) {
-            result.push(String::from(line));
-        }
-    }
-    result
+pub fn search_str<'a>(query: &'a String, content: &'a String) -> Vec<&'a str> {
+    content.lines().filter(|line| line.contains(query)).collect()
 }
